@@ -1,0 +1,156 @@
+.cosmic-footer {
+    position: relative;
+    width: 100%;
+    padding: 3rem 2rem;
+    background: linear-gradient(to top, #000000 0%, #0a0a2a 100%);
+    border-top: 1px solid rgba(100, 150, 255, 0.1);
+    overflow: hidden;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  
+  .footer-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    order: 2; /* Text comes after earth on mobile */
+  }
+  
+  .footer-message,
+  .footer-credit {
+    margin: 0;
+    color: rgba(200, 220, 255, 0.7);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    position: relative;
+  }
+  
+  .footer-message::after,
+  .footer-credit::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #4d9aff, transparent);
+    transition: width 0.5s ease;
+  }
+  
+  .footer-message:hover::after,
+  .footer-credit:hover::after {
+    width: 100%;
+  }
+  
+  .earth-globe {
+    width: 80px;
+    height: 80px;
+    background: url('https://cdn.jsdelivr.net/gh/apoorv-projects/earth@main/earth.png') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 
+      0 0 20px rgba(65, 120, 255, 0.5),
+      inset 0 0 20px rgba(0, 0, 0, 0.8);
+    animation: rotate-earth 30s linear infinite;
+    order: 1; /* Earth comes before text on mobile */
+  }
+  
+  .satellite {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 20px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: orbit-satellite 15s linear infinite;
+  }
+  
+  .satellite::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    width: 30px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%);
+  }
+  
+  .shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 1px white;
+    animation: shooting-star-fall linear forwards;
+  }
+  
+  @keyframes rotate-earth {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes orbit-satellite {
+    0% {
+      transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(100px) rotate(-360deg);
+    }
+  }
+  
+  @keyframes shooting-star-fall {
+    0% {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-100px, 100px);
+      opacity: 0;
+    }
+  }
+  
+  /* Desktop layout */
+  @media (min-width: 768px) {
+    .footer-content {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      width: 100%;
+    }
+    
+    .footer-text {
+      order: initial;
+    }
+    
+    .earth-globe {
+      order: initial;
+    }
+    
+    .footer-message::after,
+    .footer-credit::after {
+      left: 0;
+      transform: none;
+    }
+  }
+  

@@ -1,0 +1,319 @@
+/* Universe Container */
+.universe {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(ellipse at bottom, #0D0E1A 0%, #000000 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10vh;
+}
+
+/* Stars */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--duration) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Black Hole Container */
+.black-hole-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-bottom: 50px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Black Hole Core - Enhanced with more glow and effects */
+.black-hole {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #000 20%, transparent 80%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 
+    0 0 150px rgba(138, 43, 226, 0.6),
+    0 0 80px rgba(0, 191, 255, 0.5);
+  transition: all 0.5s ease-out;
+}
+
+.black-hole.emitting {
+  animation: blackHolePulse 3s infinite ease-in-out;
+}
+
+@keyframes blackHolePulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 150px rgba(138, 43, 226, 0.6),
+      0 0 80px rgba(0, 191, 255, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 0 200px rgba(138, 43, 226, 0.9),
+      0 0 120px rgba(0, 191, 255, 0.7),
+      0 0 40px rgba(255, 20, 147, 0.5);
+  }
+}
+
+.singularity {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #000;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 
+    0 0 60px 25px rgba(138, 43, 226, 0.6),
+    0 0 100px 40px rgba(0, 191, 255, 0.5),
+    0 0 140px 60px rgba(255, 20, 147, 0.3);
+  animation: singularityPulse 4s infinite alternate;
+}
+
+@keyframes singularityPulse {
+  0% {
+    box-shadow: 
+      0 0 60px 25px rgba(138, 43, 226, 0.6),
+      0 0 100px 40px rgba(0, 191, 255, 0.5),
+      0 0 140px 60px rgba(255, 20, 147, 0.3);
+  }
+  100% {
+    box-shadow: 
+      0 0 80px 35px rgba(138, 43, 226, 0.8),
+      0 0 120px 50px rgba(0, 191, 255, 0.7),
+      0 0 160px 70px rgba(255, 20, 147, 0.4);
+  }
+}
+
+/* Accretion Disk - Enhanced with more colors and glow */
+.accretion-disk {
+  position: absolute;
+  width: 380px;
+  height: 100px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(75deg);
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(138, 43, 226, 0.8) 20%, 
+    rgba(0, 191, 255, 0.9) 50%, 
+    rgba(255, 20, 147, 0.8) 80%, 
+    transparent 100%
+  );
+  animation: spin 3s linear infinite;
+  filter: blur(2px) brightness(1.2);
+  opacity: 0.9;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+}
+
+/* Emission Beam - More pronounced */
+.emission-beam {
+  position: absolute;
+  width: 10px;
+  height: 0;
+  background: linear-gradient(
+    to bottom, 
+    var(--project-color), 
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  filter: blur(1.5px);
+  box-shadow: 
+    0 0 30px var(--project-color),
+    0 0 60px rgba(255, 255, 255, 0.3);
+  animation: beamEmit 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  z-index: 4;
+}
+
+@keyframes beamEmit {
+  0% { 
+    height: 0;
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    height: 250px;
+    opacity: 1;
+  }
+  100% { 
+    height: 500px;
+    opacity: 0;
+    transform: 
+      translate(-50%, calc(-50% + 250px)) 
+      rotate(0deg);
+  }
+}
+
+/* Horizontal Projects Line - Positioned below black hole */
+.projects-line-horizontal {
+  position: relative;
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  z-index: 3;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+}
+
+.project-box {
+  position: relative;
+  width: 260px;
+  padding: 25px;
+  background: rgba(10, 5, 20, 0.95);
+  border-radius: 16px;
+  border: 1px solid var(--project-color);
+  box-shadow: 
+    0 0 40px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 30px var(--project-color) inset;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: 
+    projectAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    projectFloat 4s ease-in-out infinite;
+  animation-delay: var(--delay);
+  transition: all 0.3s ease;
+}
+
+.project-box:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 
+    0 0 50px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 40px var(--project-color) inset;
+}
+
+@keyframes projectAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes projectFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.03); }
+}
+
+.project-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: var(--project-color);
+  opacity: 0.15;
+  filter: blur(15px);
+  z-index: -1;
+  animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  to { opacity: 0.25; }
+}
+
+.project-box h3 {
+  color: white;
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px var(--project-color);
+}
+
+.project-box p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .black-hole-container {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .black-hole {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .accretion-disk {
+    width: 280px;
+  }
+  
+  .projects-line-horizontal {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .project-box {
+    width: 80%;
+  }
+}
+
+/* === Controls === */
+@layer controls {
+  .cosmic-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .reset-button {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .reset-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+}
